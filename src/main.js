@@ -1,6 +1,24 @@
 import { createApp } from 'vue'
+import { createStore } from 'vuex'
+
 import App from './App.vue'
 import router from './router'
-import store from './store'
 
-createApp(App).use(store).use(router).mount('#app')
+const store = createStore({
+  state () {
+    return {
+      count: 0
+    }
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
+
+const app = createApp(App)
+
+app.use(store)
+app.use(router)
+app.mount('#app')
